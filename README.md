@@ -56,8 +56,8 @@ val message = FcmMessage()
 
 val okHttpRequest = Request.Builder()
     .url("https://fcm.googleapis.com/v1/projects/<project_id>/messages:send")
-    .addFcmAccessToken(accessToken)
-    .post(message.toRequestBody())
+    .addFcmAccessToken(accessToken) // <- extension function
+    .post(message.toRequestBody()) // <- FcmMessage object can be converted to RequestBody
     .build()
 OkHttpClient().newCall(request).execute()
 ```
