@@ -21,5 +21,4 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "FcmWrapper"
-include(":app")
 include(":fcm-wrapper")
