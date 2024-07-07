@@ -30,6 +30,21 @@ dependencies {
 }
 ```
 
+> If you get an error similar to this: `2 files found with path 'meta-inf/dependencies'`,
+> then modify your module level `build.gradle.kts` like this:
+
+```kt
+android {
+    ...
+    packaging {
+        resources {
+            excludes += "/META-INF/{AL2.0,LGPL2.1}"
+            excludes += "/META-INF/DEPENDENCIES" // ADD THIS LINE
+        }
+    }
+}
+```
+
 ### Obtain access token
 
 To get an access token, you need to provide a service account key file in JSON format. You can
