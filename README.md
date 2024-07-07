@@ -2,7 +2,8 @@
 
 [![](https://jitpack.io/v/CsakiTheOne/FcmWrapper.svg)](https://jitpack.io/#CsakiTheOne/FcmWrapper)
 
-FcmWrapper is a simple Android library that provides an easy way to send messages to your users via Firebase Cloud Messaging (FCM) on Android.
+FcmWrapper is a simple Android library that provides an easy way to send messages to your users via
+Firebase Cloud Messaging (FCM) on Android.
 
 ## Usage
 
@@ -31,6 +32,14 @@ dependencies {
 
 ### Obtain access token
 
+To get an access token, you need to provide a service account key file in JSON format. You can
+generate a service account key in the Firebase Console.
+
+1. In the Firebase Console, open
+   Settings > [Service Accounts](https://console.firebase.google.com/project/_/settings/serviceaccounts/adminsdk).
+2. Click Generate New Private Key, then confirm by clicking Generate Key.
+3. Save the JSON file containing the key.
+
 ```kt
 val json = /* GOOGLE SERVICE ACCOUNT KEY FILE */
 val accessToken = FcmAccessToken.get(json)
@@ -39,6 +48,9 @@ val accessToken = FcmAccessToken.get(json)
 ```
 
 ### Create a message
+
+FcmMessage and its subclasses are based
+on [this reference](https://firebase.google.com/docs/reference/fcm/rest/v1/projects.messages).
 
 ```kt
 val message = FcmMessage(
@@ -49,6 +61,8 @@ val message = FcmMessage(
 ```
 
 ## OkHttp compatibility
+
+The library provides extension functions for OkHttp to make it easier to send messages.
 
 ```kt
 val accessToken = FcmAccessToken.get(json)

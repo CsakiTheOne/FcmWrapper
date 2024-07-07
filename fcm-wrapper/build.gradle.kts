@@ -1,6 +1,20 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.jetbrains.kotlin.android)
+    id("maven-publish")
+}
+
+afterEvaluate {
+    publishing {
+        publications {
+            create("release", MavenPublication::class) {
+                from(components["release"])
+                groupId = "com.csakitheone"
+                artifactId = "fcm-wrapper"
+                version = "1.0"
+            }
+        }
+    }
 }
 
 android {
