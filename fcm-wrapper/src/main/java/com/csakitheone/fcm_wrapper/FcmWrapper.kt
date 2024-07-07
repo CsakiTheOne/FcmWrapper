@@ -6,7 +6,7 @@ import com.google.gson.GsonBuilder
 class FcmWrapper {
     companion object {
 
-        val gson = GsonBuilder()
+        internal val gson = GsonBuilder()
             .create()
 
     }
