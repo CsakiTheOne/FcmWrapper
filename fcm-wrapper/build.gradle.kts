@@ -47,7 +47,10 @@ android {
 }
 
 dependencies {
-    implementation("com.google.auth:google-auth-library-oauth2-http:1.3.0")
+    implementation("com.google.auth:google-auth-library-oauth2-http:1.3.0") {
+        exclude(group = "org.apache.httpcomponents" , module = "httpcore")
+        exclude(group = "org.apache.httpcomponents" , module = "httpclient")
+    }
     implementation("com.squareup.okhttp3:okhttp:4.12.0")
     implementation("com.google.code.gson:gson:2.11.0")
 
