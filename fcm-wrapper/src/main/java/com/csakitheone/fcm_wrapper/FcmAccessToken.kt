@@ -24,6 +24,7 @@ class FcmAccessToken private constructor(val accessToken: String) {
 
         /**
          * Get an access token for Firebase Cloud Messaging.
+         * > This method contains a network operation and mustn't be called on the main thread.
          * @param googleServiceAccountJsonString You need a private key file for a service account to get an access token. You can generate a private key file in the Firebase console.
          * @return An access token for Firebase Cloud Messaging or null if an error occurred.
          */
@@ -39,7 +40,7 @@ class FcmAccessToken private constructor(val accessToken: String) {
                 googleCredentials.refresh()
                 return FcmAccessToken(googleCredentials.accessToken.tokenValue)
             } catch (e: Exception) {
-                Log.e("FcmAccessToken", e.message ?: "Unknown error")
+                Log.e("FcmAccessToken", e.message ?: "Unknown error. Make sure that you call this method on the correct thread!")
                 return null
             }
         }

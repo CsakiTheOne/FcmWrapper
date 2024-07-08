@@ -24,6 +24,10 @@ enum class FcmTargetType {
     CONDITION,
 }
 
+private data class FcmMessageRoot(
+    val message: FcmMessage,
+)
+
 data class FcmMessage(
     val name: String? = null,
     val data: Map<String, String>? = null,
@@ -72,7 +76,7 @@ data class FcmMessage(
     fun toJson(): String {
         validate()
 
-        return FcmWrapper.gson.toJson(this)
+        return FcmWrapper.gson.toJson(FcmMessageRoot(this))
     }
 
     /**
@@ -86,7 +90,7 @@ data class FcmMessage(
 
     companion object {
         fun fromJson(json: String): FcmMessage {
-            return FcmWrapper.gson.fromJson(json, FcmMessage::class.java)
+            return FcmWrapper.gson.fromJson(json, FcmMessageRoot::class.java).message
         }
     }
 }
